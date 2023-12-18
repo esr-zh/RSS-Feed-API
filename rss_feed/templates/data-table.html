@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RSS Feed Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: auto;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            word-wrap: break-word;
+        }
+        th {
+            background-color: dodgerblue;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        @media screen and (max-width: 600px) {
+            th, td {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>RSS Feed Data</h2>
+    <table>
+        <tr>
+            <th>URL</th>
+            <th>Last Parsed</th>
+            <th>Articles</th>
+        </tr>
+        {% for feed in feeds %}
+            <tr>
+                <td>{{ feed.url }}</td>
+                <td>{{ feed.last_parsed.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                <td>
+                    <ul>
+                        {% for article in feed.articles %}
+                            <li>{{ article.title }}: {{ article.description }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

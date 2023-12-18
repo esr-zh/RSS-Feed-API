@@ -9,7 +9,6 @@ firebase_admin.initialize_app(cred)
 
 SK = "randomsupersecretkey123"
 
-
 # uid = '7UZTBh8Dghg7F5Kp7pwRsl7qMF52'
 # custom_token = auth.create_custom_token(uid)
 # print(custom_token.decode())
