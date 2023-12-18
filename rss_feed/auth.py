@@ -1,14 +1,13 @@
 import jwt
 from functools import wraps
 from flask import jsonify, request
-
-from . import SK
-
 import firebase_admin
-from firebase_admin import credentials
+from firebase_admin import credentials, auth
 
-cred = credentials.Certificate("path/to/serviceAccountKey.json")
+cred = credentials.Certificate("C:/Users/Israh/PycharmProjects/RSS_REST_API/firebase-admin-sdk/firebase-sdk.json")
 firebase_admin.initialize_app(cred)
+
+SK = "randomsupersecretkey123"
 
 def token_required(f):
     @wraps(f)
@@ -26,3 +25,11 @@ def token_required(f):
         return f(*args, **kwargs)
 
     return decorated
+
+
+def verify_firebase_token(token):
+    try:
+        decoded_token = auth.verify_id_token(token)
+        return decoded_token
+    except Exception as e:
+        raise Exception('Invalid Firebase token')

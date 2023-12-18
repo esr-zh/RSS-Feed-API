@@ -12,4 +12,4 @@ class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(250), nullable=False)
     description = db.Column(db.Text, nullable=False)
-    rss_feed_id = db.Column(db.Integer, db.ForeignKey('RSS_feed.id'), nullable=False)
+    rss_feed_id = db.Column(db.Integer, db.ForeignKey('rss_feed.id'), nullable=False)

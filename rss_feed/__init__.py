@@ -5,6 +5,8 @@ from xml.etree import ElementTree as ET
 import requests
 from datetime import datetime, timedelta
 
+from rss_feed.auth import verify_firebase_token
+
 db = SQLAlchemy()
 DB_NAME = "rss_feed.db"
 SK = "randomsupersecretkey123"
@@ -16,6 +18,8 @@ def create_app():
     app.config['SECRET_KEY'] = f'{SK}'
 
     db.init_app(app)
+
+    # verify_firebase_token(app)
 
     from .views import views
     app.register_blueprint(views, url_prefix='/')
