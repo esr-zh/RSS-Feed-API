@@ -1,3 +1,10 @@
+"""
+Handles web request routes and responses.
+
+endpoints defined: /parse-rss and /show-data
+"""
+
+
 import requests
 from flask import Blueprint, request, jsonify, render_template
 from .auth import token_required
@@ -37,14 +44,14 @@ def parse_rss():
                 article.description = article_data['description']
             else:
                 # Add new article
-                new_article = Article(title=article_data['title'], description=article_data['description'], rss_feed_id=existing_feed.id)
+                new_article = Article(title=article_data['title'], description=article_data['description'],
+                                      rss_feed_id=existing_feed.id)
                 db.session.add(new_article)
 
         db.session.commit()
         articles = articles_data
 
     return jsonify(articles)
-
 
 
 @views.route('/show-data', methods=['GET'])

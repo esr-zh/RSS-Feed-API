@@ -1,4 +1,9 @@
-import jwt
+"""
+Manages user authentication and JWT verification.
+
+contains the verification of JWT (JSON Web Tokens) for secured routes, interfacing with Firebase for token validation
+"""
+
 from functools import wraps
 from flask import jsonify, request
 import firebase_admin
@@ -8,6 +13,7 @@ cred = credentials.Certificate("C:/Users/Israh/PycharmProjects/RSS_REST_API/fire
 firebase_admin.initialize_app(cred)
 
 SK = "randomsupersecretkey123"
+
 
 # uid = '7UZTBh8Dghg7F5Kp7pwRsl7qMF52'
 # custom_token = auth.create_custom_token(uid)
@@ -25,7 +31,7 @@ def token_required(f):
             token = token[7:]  # Strip "Bearer " from the token
 
         try:
-            # Assuming you are using Firebase to verify the token
+            # using Firebase to verify the token
             verify_firebase_token(token)
         except:
             return jsonify({'message': 'Invalid token!'}), 403

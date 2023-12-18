@@ -1,3 +1,9 @@
+"""
+Defines database models and structure.
+
+contains definitions for RSSFeed and Article for SQLite Database
+"""
+
 from . import db
 
 

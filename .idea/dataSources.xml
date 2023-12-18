@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:sqlite:C:\Users\Israh\PycharmProjects\RSS_REST_API\instance\rss_feed.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="rss_feed.db" uuid="0c9f38d3-eff1-4a8a-986d-c82ea7edc07c">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/instance/rss_feed.db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
