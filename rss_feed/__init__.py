@@ -1,7 +1,8 @@
-import requests
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from xml.etree import ElementTree as ET
+import requests
 from datetime import datetime, timedelta
 
 db = SQLAlchemy()
@@ -20,14 +21,3 @@ def create_app():
 
     return app
 
-def parse_rss_feed(url):
-    response = requests.get(url)
-    root = ET.fromstring(response.content)
-    articles = []
-
-    for item in root.findall('.//item'):
-        title = item.find('title').text
-        description = item.find('description').text
-        articles.append({'title': title, 'description': description})
-
-    return articles
