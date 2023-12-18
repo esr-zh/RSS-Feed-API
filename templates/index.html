@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Firebase Token Generator</title>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+</head>
+<body>
+    <h2>Firebase Token Generator</h2>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p id="token"></p>
+
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBSCOfP-WQjIpLxn4GKY3nPOwO3-FWaX7s",
+            authDomain: "rss-rest-api.firebaseapp.com",
+            projectId: "rss-rest-api",
+            storageBucket: "rss-rest-api.appspot.com",
+            messagingSenderId: "17990483828",
+            appId: "1:17990483828:web:40413ba060fa397482f621",
+            measurementId: "G-FV2VJ8G399"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        function login() {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+
+            firebase.auth().signInWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                userCredential.user.getIdToken().then(function(idToken) {
+                    document.getElementById("token").innerText = idToken;
+                });
+            })
+            .catch((error) => {
+                console.error("Error signing in: ", error);
+            });
+        }
+    </script>
+</body>
+</html>

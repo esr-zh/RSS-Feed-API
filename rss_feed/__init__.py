@@ -1,10 +1,6 @@
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from xml.etree import ElementTree as ET
-import requests
-from datetime import datetime, timedelta
-
 from rss_feed.auth import verify_firebase_token
 
 db = SQLAlchemy()

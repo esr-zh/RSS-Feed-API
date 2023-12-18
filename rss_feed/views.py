@@ -38,6 +38,21 @@ def parse_rss():
     return jsonify(articles)
 
 
+@views.route('/show-data', methods=['GET'])
+def show_data():
+    # view the results of the rss feed contents
+    feeds = RSSFeed.query.all()
+    data = []
+    for feed in feeds:
+        articles_data = [{'title': article.title, 'description': article.description} for article in feed.articles]
+        data.append({
+            'url': feed.url,
+            'last_parsed': feed.last_parsed.strftime('%Y-%m-%d %H:%M:%S'),
+            'articles': articles_data
+        })
+    return jsonify(data)
+
+
 def parse_rss_feed(url):
     response = requests.get(url)
     root = ET.fromstring(response.content)
