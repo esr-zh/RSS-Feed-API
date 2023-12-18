@@ -1,10 +1,14 @@
 import jwt
 from functools import wraps
-import requests
 from flask import jsonify, request
 
-from app import app
+from . import SK
 
+import firebase_admin
+from firebase_admin import credentials
+
+cred = credentials.Certificate("path/to/serviceAccountKey.json")
+firebase_admin.initialize_app(cred)
 
 def token_required(f):
     @wraps(f)
@@ -15,7 +19,7 @@ def token_required(f):
             return jsonify({'message': 'Token is missing!'}), 403
 
         try:
-            data = jwt.decode(token, app.config['SECRET_KEY'])
+            data = jwt.decode(token, SK)
         except:
             return jsonify({'message': 'Invalid token!'}), 403
 
