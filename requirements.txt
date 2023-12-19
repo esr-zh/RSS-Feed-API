@@ -1,0 +1,5 @@
+firebase_admin==6.3.0
+Flask==3.0.0
+flask_sqlalchemy==3.1.1
+pytest==7.4.3
+Requests==2.31.0
